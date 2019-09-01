@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.codeninjas.coppell.ninjamanager.entities.Belt;
 import com.codeninjas.coppell.ninjamanager.entities.CompletedGame;
 import com.codeninjas.coppell.ninjamanager.entities.Ninja;
 import com.codeninjas.coppell.ninjamanager.service.BeltService;
@@ -43,7 +44,8 @@ public class NinjaController {
 	}
 	
 	@RequestMapping("/ninjas/new")
-	public String newNinja(@ModelAttribute("ninja") Ninja ninja) {
+	public String newNinja(@ModelAttribute("ninja") Ninja ninja , Model model) {
+		model.addAttribute("belts", beltService.findAllBelts());
 		return "view/NinjaForm.jsp";
 	}
 	
@@ -62,7 +64,7 @@ public class NinjaController {
 		Ninja ninja = ninjaService.findNinjaById(id);
 		model.addAttribute("currentNinja", ninja);
 		model.addAttribute("completedGames", completedGameService.findCompGameByNinja(id));
-		model.addAttribute("games", gameService.findByGamesNotInNinja(ninja));
+		model.addAttribute("games", gameService.findByBeltAndNinja(ninja.getBelt(),ninja));
 		return "view/Ninja.jsp";
 	}
 	

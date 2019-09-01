@@ -13,6 +13,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
@@ -35,12 +36,7 @@ public class Belt {
 	private Calendar createdAt;
 	private Calendar updatedAt;
 	
-	@ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(
-        name = "ninjas_belts", 
-        joinColumns = @JoinColumn(name = "belt_id"), 
-        inverseJoinColumns = @JoinColumn(name = "ninja_id")
-    )     
+	@OneToMany(mappedBy="belt", fetch = FetchType.LAZY)
     private List<Ninja> ninjas;
 	
 	@OneToMany(mappedBy="belt", fetch = FetchType.LAZY)

@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
@@ -37,18 +38,13 @@ public class Ninja {
 	private Calendar updatedAt;
 	
 	public Ninja() {
-		belt = new ArrayList<>();
 		session = new ArrayList<>();
 		games = new ArrayList<>();
 	}
 	
-	@ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(
-        name = "ninjas_belts", 
-        joinColumns = @JoinColumn(name = "ninja_id"), 
-        inverseJoinColumns = @JoinColumn(name = "belt_id")
-    )     
-    private List<Belt> belt;
+	@ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="belt_id")
+    private Belt belt;
 	
 	@OneToMany(mappedBy="ninja", fetch = FetchType.LAZY)
 	private List<Session> session;
@@ -61,11 +57,12 @@ public class Ninja {
     )     
 	public List<Game> games;
 	
-	public List<Belt> getBelt() {
+	public Belt getBelt() {
 		return belt;
 	}
+	
 	public void setBelt(Belt belt) {
-		this.belt.add(belt);
+		this.belt = belt;
 	}
 	public List<Session> getSession() {
 		return session;
@@ -124,6 +121,8 @@ public class Ninja {
 	@PrePersist
 	protected void onCreate() {
 	  createdAt = Calendar.getInstance();
+	  timeSpentCoding = 0.0;
+	  starsAchieved = 0;
 	}
 	@PreUpdate
 	protected void onUpdate() {

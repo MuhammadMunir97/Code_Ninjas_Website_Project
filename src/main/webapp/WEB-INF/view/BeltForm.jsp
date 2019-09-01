@@ -13,7 +13,7 @@
 	<p>
         <form:label path="name">name</form:label>
         <form:errors path="name"/>
-        <form:textarea path="name"/>
+        <form:input path="name"/>
     </p>
     <p>
         <form:label path="description">Description</form:label>

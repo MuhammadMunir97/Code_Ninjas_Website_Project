@@ -10,6 +10,7 @@
 <body>
 <h1>Ninja Dashboard</h1> <br>
 <a href="/ninjas/new">New Ninja</a>
+<a href="/belts">Belts</a>
 <table>
     <thead>
         <tr>

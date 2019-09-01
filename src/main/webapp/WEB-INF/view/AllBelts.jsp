@@ -7,11 +7,13 @@
 <head>
 <meta charset="UTF-8">
 <title>All Belts</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
 <h1>Belts Dashboard</h1> <br>
 <a href="/belts/new">New Belts</a>
-<table>
+<a href="/ninjas">Ninjas</a>
+<table class="table table-hover table-dark">
     <thead>
         <tr>
             <th><h3>Name</h3></th>

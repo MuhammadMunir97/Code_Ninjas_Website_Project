@@ -10,6 +10,7 @@
 <title>Ninja Report</title>
 </head>
 <body>
+<a href="/ninjas">All Ninjas</a>
 <table>
     <thead>
         <tr>
@@ -71,12 +72,12 @@
 	<p>
         <form:label path="starsAchieved">Stars Achieved</form:label>
         <form:errors path="starsAchieved"/>
-        <form:textarea path="starsAchieved"/>
+        <form:input path="starsAchieved"/>
     </p>
     <p>
         <form:label path="timeSpent">timeSpent</form:label>
         <form:errors path="timeSpent"/>
-        <form:textarea path="timeSpent"/>
+        <form:input path="timeSpent"/>
     </p>
 	    <input type="submit" value="Submit"/>
 	</form:form>

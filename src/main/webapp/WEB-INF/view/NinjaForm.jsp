@@ -13,23 +13,20 @@
 	<p>
         <form:label path="firstName">First Name</form:label>
         <form:errors path="firstName"/>
-        <form:textarea path="firstName"/>
+        <form:input path="firstName"/>
     </p>
     <p>
         <form:label path="lastName">Last Name</form:label>
         <form:errors path="lastName"/>
-        <form:textarea path="lastName"/>
+        <form:input path="lastName"/>
     </p>
-    <p>
-        <form:label path="timeSpentCoding">Time Spent Coding</form:label>
-        <form:errors path="timeSpentCoding"/>
-        <form:textarea path="timeSpentCoding"/>
-    </p>
-    <p>
-        <form:label path="starsAchieved">Stars Achieved</form:label>
-        <form:errors path="starsAchieved"/>
-        <form:textarea path="starsAchieved"/>
-    </p>
+    <form:select  path="belt">
+			<c:forEach items="${belts}" var="belt">
+				 <form:option value="${belt}">
+				 	${belt.name}
+				 </form:option>
+	    	</c:forEach>
+	</form:select>
     <input type="submit" value="Submit"/>
  </form:form>
 </body>

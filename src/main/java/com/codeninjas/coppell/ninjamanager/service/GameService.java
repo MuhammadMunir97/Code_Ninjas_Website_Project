@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
+import com.codeninjas.coppell.ninjamanager.entities.Belt;
 import com.codeninjas.coppell.ninjamanager.entities.Game;
 import com.codeninjas.coppell.ninjamanager.entities.Ninja;
 import com.codeninjas.coppell.ninjamanager.repositories.GameRepository;
@@ -35,6 +36,9 @@ public class GameService {
 		return gameRepository.findByNinjasNotContains(ninja);
 	}
 	
+	public List<Game> findByBeltAndNinja(Belt belt , Ninja ninja){
+		return gameRepository.findByBeltAndNinjasNotContains(belt, ninja);
+	}
 	public void saveGame(Game game) {
 		gameRepository.save(game);
 	}

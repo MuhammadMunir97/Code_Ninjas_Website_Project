@@ -35,6 +35,8 @@ public class CompletedGameService {
 	}
 	
 	public void saveCompletedGame(CompletedGame completedGame) {
+		completedGame.getNinja().setStarsAchieved(completedGame.getStarsAchieved() + completedGame.getNinja().getStarsAchieved());
+		completedGame.getNinja().setTimeSpentCoding(completedGame.getTimeSpent() + completedGame.getNinja().getTimeSpentCoding());
 		completedGameRepo.save(completedGame);
 	}
 	
