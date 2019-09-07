@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.codeninjas.coppell.ninjamanager.entities.Belt;
@@ -51,6 +52,23 @@ public class NinjaController {
 	
 	@PostMapping("/ninjas")
 	public String addNinja(@Valid @ModelAttribute("ninja") Ninja ninja , BindingResult bindingResult) {
+		if(bindingResult.hasErrors()) {
+			return "redirect:/ninjas";
+		}else {
+			ninjaService.saveNinja(ninja);
+			return "redirect:/ninjas";
+		}
+	}
+	
+	@RequestMapping("/ninjas/edit/{id}")
+	public String showFormForUpdate(Model model , @PathVariable("id") Long id ) {
+		model.addAttribute("ninja", ninjaService.findNinjaById(id));
+		model.addAttribute("belts", beltService.findAllBelts());
+		return "view/NinjaFormForUpdate.jsp";
+	}
+	
+	@PutMapping("/ninjas/edit/{id}")
+	public String editNinja(@Valid @ModelAttribute("ninja") Ninja ninja , BindingResult bindingResult) {
 		if(bindingResult.hasErrors()) {
 			return "redirect:/ninjas";
 		}else {

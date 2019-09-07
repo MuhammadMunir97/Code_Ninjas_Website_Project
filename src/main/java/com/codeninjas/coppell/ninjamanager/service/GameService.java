@@ -32,13 +32,14 @@ public class GameService {
 		}
 	}
 	
-	public List<Game> findByGamesNotInNinja(Ninja ninja){
-		return gameRepository.findByNinjasNotContains(ninja);
-	}
-	
+//	public List<Game> findByGamesNotInNinja(Ninja ninja){
+//		return gameRepository.findByNinjasNotContains(ninja);
+//	}
+//	
 	public List<Game> findByBeltAndNinja(Belt belt , Ninja ninja){
 		return gameRepository.findByBeltAndNinjasNotContains(belt, ninja);
 	}
+	
 	public void saveGame(Game game) {
 		gameRepository.save(game);
 	}

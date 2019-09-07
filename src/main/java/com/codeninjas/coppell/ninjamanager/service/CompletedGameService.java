@@ -30,6 +30,8 @@ public class CompletedGameService {
 		}
 	}
 	
+	
+	
 	public List<CompletedGame> findCompGameByNinja(Long id){
 		return completedGameRepo.findByNinjaId(id);
 	}

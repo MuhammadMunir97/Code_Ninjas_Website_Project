@@ -29,7 +29,7 @@
         	<td>${currentNinja.lastName}</td>
         	<td>${currentNinja.timeSpentCoding}</td>
         	<td>${currentNinja.starsAchieved}</td>
-        	<td>${fn:length(currentNinja.games)}</td>
+        	<td>${fn:length(currentNinja.completedGames)}</td>
         	<td>${fn:length(currentNinja.session)}</td>
             <td>
             <form action="/ninjas/${currentNinja.id}" method="post">
@@ -61,7 +61,7 @@
 	    	</c:forEach>
 	    </tbody>
 	</table>
-   <form:form action="/ninjas/${currentNinja.id}" method="post" modelAttribute="completedGame">
+  <form:form action="/ninjas/${currentNinja.id}" method="post" modelAttribute="completedGame">
     	<form:select  path="game">
 			<c:forEach items="${games}" var="singleGame">
 				 <form:option value="${singleGame}">

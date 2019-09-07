@@ -19,6 +19,7 @@
             <th><h3>Time Spent Coding</h3></th>
             <th><h3>Stars Achieved</h3></th>
             <th><h3>Action</h3></th>
+            <th><h3>Edit</h3></th>
         </tr>
     </thead>
     <tbody>
@@ -34,6 +35,7 @@
 			    <input type="submit" value="Delete">
 			</form>
 			</td>
+			<td><a href="/ninjas/edit/${ninja.id}">Edit Profile</a></td>
         </tr>
         </c:forEach>
     </tbody>

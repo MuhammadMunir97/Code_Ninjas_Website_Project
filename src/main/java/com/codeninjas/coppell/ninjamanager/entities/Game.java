@@ -48,15 +48,10 @@ public class Game {
 	private List<Ninja> ninjas;
 	
 	@OneToMany(mappedBy="game", fetch = FetchType.LAZY)
-	private List<GameConcept> gameConcepts;
+	private List<CompletedGame> completedGames;
 	
-	public List<Ninja> getNinjas() {
-		return ninjas;
-	}
-
-	public void setNinjas(List<Ninja> ninjas) {
-		this.ninjas = ninjas;
-	}
+	@OneToMany(mappedBy="game", fetch = FetchType.LAZY)
+	private List<GameConcept> gameConcepts;
 
 	public Long getId() {
 		return id;
@@ -68,6 +63,22 @@ public class Game {
 
 	public String getName() {
 		return name;
+	}
+
+	public List<CompletedGame> getCompletedGames() {
+		return completedGames;
+	}
+
+	public void setCompletedGames(List<CompletedGame> completedGames) {
+		this.completedGames = completedGames;
+	}
+
+	public List<GameConcept> getGameConcepts() {
+		return gameConcepts;
+	}
+
+	public void setGameConcepts(List<GameConcept> gameConcepts) {
+		this.gameConcepts = gameConcepts;
 	}
 
 	public void setName(String name) {

@@ -15,6 +15,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.PostPersist;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
@@ -39,7 +40,7 @@ public class Ninja {
 	
 	public Ninja() {
 		session = new ArrayList<>();
-		games = new ArrayList<>();
+		completedGames = new ArrayList<>();
 	}
 	
 	@ManyToOne(fetch = FetchType.LAZY)
@@ -49,13 +50,8 @@ public class Ninja {
 	@OneToMany(mappedBy="ninja", fetch = FetchType.LAZY)
 	private List<Session> session;
 	
-	@ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(
-        name = "completed_games", 
-        joinColumns = @JoinColumn(name = "ninja_id"), 
-        inverseJoinColumns = @JoinColumn(name = "game_id")
-    )     
-	public List<Game> games;
+	@OneToMany(mappedBy="ninja", fetch = FetchType.LAZY)
+	private List<CompletedGame> completedGames;
 	
 	public Belt getBelt() {
 		return belt;
@@ -69,13 +65,19 @@ public class Ninja {
 	}
 	public void setSession(Session session) {
 		this.session.add(session);
+	}	
+	public List<CompletedGame> getCompletedGames() {
+		return completedGames;
 	}
-	public List<Game> getGames() {
-		return games;
+
+	public void setCompletedGames(List<CompletedGame> completedGames) {
+		this.completedGames = completedGames;
 	}
-	public void setGames(Game games) {
-		this.games.add(games);
+
+	public void setSession(List<Session> session) {
+		this.session = session;
 	}
+
 	public int getStarsAchieved() {
 		return starsAchieved;
 	}
@@ -121,8 +123,11 @@ public class Ninja {
 	@PrePersist
 	protected void onCreate() {
 	  createdAt = Calendar.getInstance();
-	  timeSpentCoding = 0.0;
-	  starsAchieved = 0;
+	}
+	@PostPersist
+	protected void setInitValues() {
+		this.timeSpentCoding = 0.0;
+		this.starsAchieved = 0;
 	}
 	@PreUpdate
 	protected void onUpdate() {
