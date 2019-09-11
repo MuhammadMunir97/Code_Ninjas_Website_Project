@@ -27,6 +27,7 @@ public class NinjaController {
 	private final BeltService beltService;
 	private final CompletedGameService completedGameService;
 	private final GameService gameService;
+
 	
 	public NinjaController(NinjaService ninjaService ,
 							BeltService beltService ,
@@ -105,4 +106,5 @@ public class NinjaController {
 		ninjaService.deleteNinjaById(id);
 		return "redirect:/ninjas";
 	}
+	
 }

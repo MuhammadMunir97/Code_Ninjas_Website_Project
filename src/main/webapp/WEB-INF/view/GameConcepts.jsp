@@ -9,6 +9,7 @@
 <title>Game Concepts</title>
 </head>
 <body>
+${theGame.name}
 <table class="table table-hover table-dark">
     <thead>
         <tr>
@@ -17,7 +18,7 @@
         </tr>
     </thead>
     <tbody>
-        <c:forEach items="${gameConcepts}" var="gameConcept">
+        <c:forEach items="${theGame.gameConcepts}" var="singleGameConcept">
         <tr>
         	<td><a href="/games/${gameConcept.game.id}/gameConcept"><c:out value="${gameConcept.description}"/></a></td>
         	<td>
@@ -30,7 +31,10 @@
         </c:forEach>
     </tbody>
 </table>
-<form:form action="/games/${gameConcept.game.id}/gameConcept" method="POST" modelAttribute="game">
+<form:form action="/games/${theGame.id}/" method="POST" modelAttribute="gameConcept">
+    	<form:label path="game">Game</form:label>
+        <form:errors path="game"/>
+        <form:hidden path="game" value="${theGame}"/>
     <p>
         <form:label path="description">Description</form:label>
         <form:errors path="description"/>

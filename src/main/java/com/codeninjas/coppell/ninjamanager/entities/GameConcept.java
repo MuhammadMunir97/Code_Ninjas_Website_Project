@@ -50,5 +50,31 @@ public class GameConcept {
 	public void setDescription(String description) {
 		this.description = description;
 	}
+
+	public Game getGame() {
+		return game;
+	}
+
+	public void setGame(Game game) {
+		this.game = game;
+	}
+
+	public List<QuizQuestion> getQuizQuestions() {
+		return quizQuestions;
+	}
+
+	public void setQuizQuestions(List<QuizQuestion> quizQuestions) {
+		this.quizQuestions = quizQuestions;
+	}
+
+	public List<GradedGameConcept> getGradedGameConcepts() {
+		return gradedGameConcepts;
+	}
+
+	public void setGradedGameConcepts(List<GradedGameConcept> gradedGameConcepts) {
+		this.gradedGameConcepts = gradedGameConcepts;
+	}
+	
+	
 	
 }
