@@ -1,7 +1,5 @@
 package com.codeninjas.coppell.ninjamanager.entities;
 
-import java.util.List;
-
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -9,37 +7,47 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
 @Entity
-@Table(name="quiz_questions")
-public class QuizQuestion {
+@Table(name="game_concept_games")
+public class GameConceptGame {
+	
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private String description;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="game_id")
+	private Game game;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="game_concept_id")
 	private GameConcept gameConcept;
-	
-	@OneToMany(mappedBy="quizQuestion", fetch = FetchType.LAZY)
-	private List<Answer> answers;
-	
-	public QuizQuestion() {
-		
-	}
-	
+
 	public Long getId() {
 		return id;
 	}
+
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public String getDescription() {
-		return description;
+
+	public Game getGame() {
+		return game;
 	}
-	public void setDescription(String description) {
-		this.description = description;
+
+	public void setGame(Game game) {
+		this.game = game;
 	}
+
+	public GameConcept getGameConcept() {
+		return gameConcept;
+	}
+
+	public void setGameConcept(GameConcept gameConcept) {
+		this.gameConcept = gameConcept;
+	}
+	
+	
 }

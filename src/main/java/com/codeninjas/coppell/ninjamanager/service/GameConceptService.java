@@ -21,7 +21,7 @@ public class GameConceptService {
 	}
 	
 	public List<GameConcept> findByGameId(Long id){
-		return gameConceptRepository.findByGameId(id);
+		return gameConceptRepository.findByGamesId(id);
 	}
 	
 	public void saveGameConcept(GameConcept gameConcept) {

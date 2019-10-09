@@ -50,7 +50,12 @@ public class Game {
 	@OneToMany(mappedBy="game", fetch = FetchType.LAZY)
 	private List<CompletedGame> completedGames;
 	
-	@OneToMany(mappedBy="game", fetch = FetchType.LAZY)
+	@ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+        name = "game_concept_games", 
+        joinColumns = @JoinColumn(name = "game_id"), 
+        inverseJoinColumns = @JoinColumn(name = "game_concept_id")
+    )   
 	private List<GameConcept> gameConcepts;
 
 	public Long getId() {

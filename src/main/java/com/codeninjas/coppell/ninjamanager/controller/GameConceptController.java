@@ -1,5 +1,7 @@
 package com.codeninjas.coppell.ninjamanager.controller;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.stereotype.Controller;
@@ -29,19 +31,21 @@ public class GameConceptController {
 	@RequestMapping("games/{id}")
 	public String newGameConcept(@ModelAttribute("gameConcept") GameConcept gameConcept , Model model , @PathVariable("id") Long id) {
 		Game game = gameService.findGameById(id);
-		gameConcept.setGame(game);
+		List<Game> games = gameConcept.getGames();
+		games.add(game);
+		gameConcept.setGames(games);
 		model.addAttribute("theGame", game);
 		return "view/GameConcepts.jsp";
 	}
 	
-	@PostMapping("games/{id}")
+	@PostMapping("games/{gameId}")
 	public String addGameConcept(@Valid @ModelAttribute("gameConcept") GameConcept gameConcept , BindingResult bindingResult) {
 		if(bindingResult.hasErrors()) {
 			System.out.println("error");
-			return "redirect:games/{id}";
+			return "redirect:/games/{gameId}";
 		}else {
 			gameConceptService.saveGameConcept(gameConcept);
-			return "redirect:games/{id}";
+			return "redirect:/games/{gameId}";
 		}
 	}
 	

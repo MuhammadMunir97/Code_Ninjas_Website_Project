@@ -20,9 +20,9 @@ ${theGame.name}
     <tbody>
         <c:forEach items="${theGame.gameConcepts}" var="singleGameConcept">
         <tr>
-        	<td><a href="/games/${gameConcept.game.id}/gameConcept"><c:out value="${gameConcept.description}"/></a></td>
+        	<td><a href="/games/${theGame.id}/gameConcept"><c:out value="${singleGameConcept.description}"/></a></td>
         	<td>
-            <form action="/games/${gameConcept.game.id}/${gameConcept.id}" method="post">
+            <form action="/games/${theGame.id}/${singleGameConcept.id}" method="post">
 			    <input type="hidden" name="_method" value="delete">
 			    <input type="submit" value="Delete">
 			</form>
@@ -32,13 +32,10 @@ ${theGame.name}
     </tbody>
 </table>
 <form:form action="/games/${theGame.id}/" method="POST" modelAttribute="gameConcept">
-    	<form:label path="game">Game</form:label>
-        <form:errors path="game"/>
-        <form:hidden path="game" value="${theGame}"/>
     <p>
         <form:label path="description">Description</form:label>
         <form:errors path="description"/>
-        <form:textarea path="description"/>
+        <form:input path="description"/>
     </p>
     <input type="submit" value="Submit"/>
  </form:form>

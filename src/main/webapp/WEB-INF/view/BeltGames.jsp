@@ -22,7 +22,7 @@
     <tbody>
         <c:forEach items="${belt.games}" var="singleGame">
         <tr>
-        	<td><a href="/belts/${belt.id}/games"><c:out value="${singleGame.name}"/></a></td>
+        	<td><a href="/games/${singleGame.id}"><c:out value="${singleGame.name}"/></a></td>
         	<td>${singleGame.description}</td>
         	<td>
             <form action="/belts/${belt.id}/${singleGame.id}" method="post">

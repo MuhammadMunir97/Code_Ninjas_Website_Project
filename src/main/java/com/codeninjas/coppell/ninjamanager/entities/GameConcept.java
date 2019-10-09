@@ -1,5 +1,6 @@
 package com.codeninjas.coppell.ninjamanager.entities;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -8,6 +9,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -20,9 +23,13 @@ public class GameConcept {
 	private Long id;
 	private String description;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="game_id")
-	private Game game;
+	@ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+        name = "game_concept_games", 
+        joinColumns = @JoinColumn(name = "game_concept_id"), 
+        inverseJoinColumns = @JoinColumn(name = "game_id")
+    )   
+	private List<Game> games;
 	
 	@OneToMany(mappedBy="gameConcept", fetch = FetchType.LAZY)
 	private List<QuizQuestion> quizQuestions; 
@@ -32,7 +39,7 @@ public class GameConcept {
 	
 	
 	public GameConcept() {
-		
+		games = new ArrayList<Game>();
 	}
 
 	public Long getId() {
@@ -51,12 +58,12 @@ public class GameConcept {
 		this.description = description;
 	}
 
-	public Game getGame() {
-		return game;
+	public List<Game> getGames() {
+		return games;
 	}
 
-	public void setGame(Game game) {
-		this.game = game;
+	public void setGames(List<Game> games) {
+		this.games = games;
 	}
 
 	public List<QuizQuestion> getQuizQuestions() {
